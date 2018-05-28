@@ -1,4 +1,4 @@
-app = angular.module('ids', [ 'ngSanitize', 'mgcrea.ngStrap' ]);
+app = angular.module('ids', [ 'ngSanitize', 'mgcrea.ngStrap', 'ngRoute' ]);
 
 
 app.controller('resultDisplay', [ '$scope', '$http', function($scope, $http) {
@@ -55,15 +55,16 @@ app.controller('user', [ '$scope', '$http', function($scope, $http) {
 			$scope.newUser.username = $scope.user.username;
 			$scope.newUser.role = "user";
 			$http.post('/addUser', $scope.newUser).success(function() {
-				console.log("yay");
-			}).error(function(error, status) {
-				console.log(error);
-				console.log(status);
-			});
+				console.log("success");
+				alert("User has been created")
+			})
 		})
 	}
 } ]);
-
+function alert(message){
+	alertDiv = angular.element(document.getElementById('alertDiv'));
+	alertDiv.html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+}
 function format(results) {
 	results = formatIndentation(results);
 	return results;
