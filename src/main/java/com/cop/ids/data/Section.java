@@ -1,5 +1,7 @@
 package com.cop.ids.data;
 
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.annotation.Id;
@@ -28,7 +30,13 @@ public class Section {
 		this.text=text;
 		this.history=history;	
 	}
-	
+	public String getId() {
+		return id.toHexString();
+	}
+	public void setId(ObjectId id) {
+
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

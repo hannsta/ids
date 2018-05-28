@@ -1,0 +1,27 @@
+<div class="container">
+	<h1>Idaho Law Tool</h1>
+	<div ng-cloak class="ng-cloak">
+		<table>
+			<tr id="document" ng-repeat="x in results">
+				<td>
+					<table>
+						<tr>
+							<td class="document_number">{{x.number}}</td>
+							<td id="document_name">{{x.name}}</td>
+							<td>
+								<button type="button" class="glyphicon glyphicon-star"
+									title="{{popover.title}}" data-content="{{popover.content}}"
+									data-template-url="/FavoritePopover" data-animation="am-flip-x"
+									data-auto-close="1" bs-popover></button>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=3><span ng-bind-html="x.text"></span></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

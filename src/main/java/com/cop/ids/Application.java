@@ -3,7 +3,10 @@ package com.cop.ids;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 
 @SpringBootApplication()
 @EnableAsync
@@ -15,4 +18,5 @@ public class Application {
         SpringApplication.run(Application.class, args);
         
     }
+
 }

@@ -31,6 +31,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-cache") 
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.5.RELEASE'
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.5.RELEASE'    
     compile("org.jsoup:jsoup:1.11.3")
 }
 

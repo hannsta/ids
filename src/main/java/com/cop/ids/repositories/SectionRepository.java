@@ -2,6 +2,7 @@ package com.cop.ids.repositories;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.cop.ids.data.Section;
@@ -11,6 +12,7 @@ public interface SectionRepository extends MongoRepository<Section, String> {
 
 	public List<Section> findByTitleId(int titleId);
 	public List<Section> findByChapterId(int chapterId);
+	public Section findById(ObjectId id);
 	
 	
 }
