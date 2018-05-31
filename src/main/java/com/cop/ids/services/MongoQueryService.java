@@ -22,7 +22,7 @@ public class MongoQueryService {
 	}
 	
 	public List<Section> regexQuery(String searchText){
-		Query query = new Query(Criteria.where("text").regex(searchText));
+		Query query = new Query(Criteria.where("name").regex(searchText.toUpperCase()));
 		List<Section> sections = mongoOps.find(query, Section.class);
 		return sections;
 	}
