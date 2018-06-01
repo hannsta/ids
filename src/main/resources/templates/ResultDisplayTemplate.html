@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>Idaho Statute Search</h1>
+	<h2>Idaho Statute Search</h2>
 	<div ng-cloak class="ng-cloak">
 		<table class="table table-striped" ng-repeat="x in results">
 			<tr id="document" scope="row">
@@ -16,7 +16,7 @@
 								class="btn btn-default glyphicon glyphicon-star text-center"
 								title="{{popover.title}}" data-content="{{popover.content}}"
 								data-template-url="/FavoritePopover" data-animation="am-flip-x"
-								data-auto-close="1" bs-popover></button>
+								data-auto-close="1" placement="left" trigger= "click" bs-popover></button>
 						</div>
 						<div ng-switch-when="favorite">
 							<button type="button" class="btn btn-default glyphicon glyphicon-remove text-center" ng-click="removeFromFavoriteGroup(currentFav, x.id)"></button>
