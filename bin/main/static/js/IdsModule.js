@@ -1,16 +1,34 @@
 app = angular.module('ids', [ 'ngSanitize', 'mgcrea.ngStrap', 'ngRoute' ]);
 
+app.controller('resultDisplay', [
+		'$scope',
+		'$http',
+		function($scope, $http) {
+			$scope.results = "high";
+			$scope.resultType = "search";
+			$scope.currentFav = "";
+			$scope.popover = {
+				"title" : "Title",
+				"content" : "Hello Popover<br />This is a multiline message!"
+			};
+			$scope.addToFavorite = function(favName, objId) {
+				$http.get(
+						'/addToFavoriteGroup?favorite=' + favName
+								+ "&objectId=" + objId).success()
+			};
+			$scope.removeFromFavoriteGroup = function(favName, objId) {
+				$http.get(
+						'/removeFromFavoriteGroup?favorite=' + favName
+								+ "&objectId=" + objId).success(
+						function() {
+							$http.get('/getFavorites?favorite=' + favName)
+									.success(function(data) {
+										$scope.results = format(data);
+									});
+						});
+			}
 
-app.controller('resultDisplay', [ '$scope', '$http', function($scope, $http) {
-	$scope.results="high";
-	$scope.popover = {
-			"title" : "Title",
-			"content" : "Hello Popover<br />This is a multiline message!"
-		};
-		$scope.addToFavorite = function(favName, objId) {
-			$http.get('/addToFavoriteGroup?favorite=' + favName+"&objectId="+objId).success()
-		}
-} ]);
+		} ]);
 
 app.controller('search', [
 		'$scope',
@@ -19,9 +37,8 @@ app.controller('search', [
 			$scope.search = function() {
 				$http.get('/search?search=' + $scope.searchText).success(
 						function(data) {
-							console.log("datahere")
-							console.log($scope.results)
 							$scope.$parent.results = format(data);
+							$scope.$parent.resultType = "search";
 						})
 			}
 		} ]);
@@ -41,9 +58,21 @@ app.controller('favorites', [
 
 			}
 			$scope.getFavorites = function(favName) {
-				$http.get('/getFavorites?favorite='+favName).success(function(data) {
-					$scope.$parent.results = format(data);
-				})
+				$http.get('/getFavorites?favorite=' + favName).success(
+						function(data) {
+							$scope.$parent.results = format(data);
+							$scope.$parent.resultType = "favorite";
+							$scope.$parent.currentFav = favName;
+						})
+			}
+			$scope.removeFavoriteGroup = function(favName) {
+				$http.get('/removeFavoriteGroup?favorite=' + favName).success(
+						function(data) {
+							$http.get('/getFavoriteGroups').success(
+									function(data) {
+										$scope.favorites = data;
+									})
+						})
 			}
 		} ]);
 
@@ -61,9 +90,11 @@ app.controller('user', [ '$scope', '$http', function($scope, $http) {
 		})
 	}
 } ]);
-function alert(message){
+function alert(message) {
 	alertDiv = angular.element(document.getElementById('alertDiv'));
-	alertDiv.html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+	alertDiv
+			.html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>'
+					+ message + '</span></div>')
 }
 function format(results) {
 	results = formatIndentation(results);
@@ -73,6 +104,8 @@ function formatIndentation(results) {
 	alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 	for (i = 0; i < results.length; i++) {
 		textBody = results[i].text;
+		if (typeof textBody == 'undefined')
+			return;
 		listsFound = false;
 		lines = textBody.split("\n");
 		formattedText = "";

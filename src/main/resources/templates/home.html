@@ -66,7 +66,7 @@ search and favorite feed this
          				</ul>
          			</li>
          			<li role="separator" class="divider"></li>
-         			<li class="dropdown">
+         			<li class="dropdown ">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Favorites <span class="caret"></span></a>
 						<ul class="dropdown-menu" id="dropdown-menu" ng-controller="favorites">
      						<li>
@@ -77,8 +77,15 @@ search and favorite feed this
 						    		<input type="text" class="form-control" ng-model="favoriteName" placeholder="New Fav Folder..." id="favoriteBox">
 				    			</div>
      						</li>
-         					<li class="list-group">
-								<a ng-repeat="fav in favorites" href='#' class="list-group-item list-group-item-action" ng-click="getFavorites(fav.name)">{{fav.name}}</a>
+         					<li>
+								<div ng-repeat="fav in favorites" class="btn-group btn-group-justified">
+								  	<div class="btn-group"  id="favButton" role="group">
+										<button href='#' class="btn btn-default" ng-click="getFavorites(fav.name)">{{fav.name}}</button>
+									</div>
+								  	<div class="btn-group" id="deleteFav" role="group">
+										<button href='#' class="btn btn-default glyphicon glyphicon-remove" ng-click="removeFavoriteGroup(fav.name)"></button>
+									</div>
+								</div> 
 							</li>
          				</ul>
          			</li>

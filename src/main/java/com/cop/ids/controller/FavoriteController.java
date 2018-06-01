@@ -53,18 +53,26 @@ public class FavoriteController {
 		return myFav;
 	}
 	@RequestMapping("/removeFromFavoriteGroup")
-	public String removeFromFavoriteGroup(@RequestParam(value="favorite", defaultValue="name") String favoriteName, @RequestParam(value="objectId", defaultValue="name") String id) {
+	public FavoriteGroup removeFromFavoriteGroup(@RequestParam(value="favorite", defaultValue="name") String favoriteName, @RequestParam(value="objectId", defaultValue="name") String id) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		FavoriteGroup myFav = new FavoriteGroup(user.getUsername(), favoriteName);
+		FavoriteGroup myFav = favoriteRepository.findByUsernameAndName(user.getUsername(), favoriteName);
 		myFav.removeFavorite(id);
 		favoriteRepository.save(myFav);
-		return "success";
+		return myFav;
+	}
+	@RequestMapping("/removeFavoriteGroup")
+	public FavoriteGroup removeFavoriteGroup(@RequestParam(value="favorite", defaultValue="name") String favoriteName){
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(favoriteName);
+
+		FavoriteGroup myFav = favoriteRepository.findByUsernameAndName(user.getUsername(), favoriteName);
+		favoriteRepository.delete(myFav);
+		return myFav;
 	}
 	@RequestMapping("/getFavorites")
 	public Iterable<Section> getFavorites(@RequestParam(value="favorite", defaultValue="name") String favoriteName){
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		MongoQueryService mqs = new MongoQueryService();
-
 		FavoriteGroup myFav = favoriteRepository.findByUsernameAndName(user.getUsername(), favoriteName);
 		List<Section> results = mqs.favoriteQuery(myFav.getFavorites());
 		return results;
