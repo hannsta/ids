@@ -21,3 +21,9 @@ table, th, td {
   	justify-content: center;
   	align-items: center;
 }
+#favButton{
+	width:85%;
+}
+#deleteFav{
+	width:15%
+}

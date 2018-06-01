@@ -14,6 +14,8 @@ public class Section {
     
     private int titleId;
     private int chapterId;
+    private String titleName;
+    private String chapterName;
     private String number;
 	private String name;
 	private String text;
@@ -81,6 +83,12 @@ public class Section {
 	}
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	public String getTitleName() {
+		return titleName;
+	}
+	public void setTitleName(String titleName) {
+		this.titleName = titleName;
 	}
 	
 	
