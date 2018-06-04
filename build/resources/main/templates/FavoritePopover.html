@@ -1,0 +1,13 @@
+<div class="popover" tabindex="-1" ng-show="content">
+	<div class="arrow"></div>
+	<h3 class="popover-title" ng-bind-html="" ng-show="title"></h3>
+	<div class="popover-content">
+		<div ng-app="ids" ng-controller="favorites" ng-cloak class="ng-cloak">
+			<ul class="list-group">
+				<button type="button" ng-repeat="fav in favorites"
+					ng-click="addToFavorite(fav.name, x.id)" class="list-group-item list-group-item-action">{{fav.name}}</button>
+			</ul>
+
+		</div>
+	</div>
+</div>

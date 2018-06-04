@@ -15,16 +15,9 @@ table, th, td {
 .glyphicon {
   	justify-content: center;
   	align-items: center;
-  	top: 0px !important;
 }
 
 .document_number > a {
   	justify-content: center;
   	align-items: center;
-}
-#favButton{
-	width:85%;
-}
-#deleteFav{
-	width:15%;
 }
