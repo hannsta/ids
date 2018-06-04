@@ -1,0 +1,23 @@
+table, th, td {
+	border: 1px solid grey;
+	border-collapse: collapse;
+}
+
+.popover-content {
+	padding: -15px;
+	margin: -15px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+	min-width: 300px !important;
+}
+
+.glyphicon {
+  	justify-content: center;
+  	align-items: center;
+}
+
+.document_number > a {
+  	justify-content: center;
+  	align-items: center;
+}
