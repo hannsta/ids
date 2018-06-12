@@ -47,15 +47,12 @@ search and favorite feed this
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#" style="margin-top: -10px"><img
-					src="/images/state_seal.svg" alt="Idaho Statutes" height="40px"
+					src="images/state_seal.svg" alt="Idaho Statutes" height="40px"
 					width="40px"></a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/register">Register</a></li>
-					<li><a href="/login">Login</a></li>
-					<li role="separator" class="divider"></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Search <span class="caret"></span></a>
@@ -115,9 +112,10 @@ search and favorite feed this
 
 	<script>		
 		var expandRow = function(ele) {
-			if (ele.parentElement.parentElement.parentElement.childNodes[2].style.display != 'none') {
-				ele.parentElement.parentElement.parentElement.childNodes[2].style.display='none';
-			} else { ele.parentElement.parentElement.parentElement.childNodes[2].style.display=''}
+			debugger;
+			if (ele.parentElement.parentElement.parentElement.childNodes[3].style.display != 'none') {
+				ele.parentElement.parentElement.parentElement.childNodes[3].style.display='none';
+			} else { ele.parentElement.parentElement.parentElement.childNodes[3].style.display=''}
 		}
 		
 		function clearSearchText() {
