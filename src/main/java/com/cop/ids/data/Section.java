@@ -5,6 +5,7 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 
 @Cacheable
 public class Section {
@@ -17,8 +18,8 @@ public class Section {
     private String titleName;
     private String chapterName;
     private String number;
-	private String name;
-	private String text;
+    @TextIndexed(weight=8) private String name;
+	@TextIndexed(weight=2) private String text;
 	private String history;
 	
 	public Section() {

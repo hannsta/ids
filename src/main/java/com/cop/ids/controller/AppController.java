@@ -45,7 +45,9 @@ public class AppController {
 	@RequestMapping("/search")
 	public Iterable<Section> search(@RequestParam(value="search", defaultValue="1") String searchText) {
 		MongoQueryService mongodb = new MongoQueryService();
+		//return mongodb.searchQuery(searchText);
 		return mongodb.regexQuery(searchText);
+
 	}
 
 	@RequestMapping("/scrape")
