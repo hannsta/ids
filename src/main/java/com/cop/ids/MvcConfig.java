@@ -18,17 +18,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/ResultDisplayTemplate").setViewName("ResultDisplayTemplate");
         registry.addViewController("/FavoritePopover").setViewName("FavoritePopover");
         registry.addViewController("/addFavorite").setViewName("addFavorite");
-
-
-
-
     }
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    registry.addResourceHandler("/resources/**", "/public/**")
-	      .addResourceLocations("/", "/resources/", "/public/")
-	      .setCachePeriod(3600)
-	      .resourceChain(true)
-	      .addResolver(new PathResourceResolver());
-	}
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/resources/**")
+                    .addResourceLocations("/public", "classpath:/static/")
+                    .setCachePeriod(31556926);
+    }
 }
