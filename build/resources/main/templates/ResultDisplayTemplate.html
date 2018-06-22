@@ -1,21 +1,35 @@
 <div class="container">
-	<h1>Idaho Statute Search</h1>
+	<h2>Idaho Statute Search</h2>
 	<div ng-cloak class="ng-cloak">
-		<table class="table table-striped" ng-repeat="x in results" >
-			<tr id="document" scope="row">
-				<td class="document_number text-center" style="width: 15%; vertical-align:middle;"><a href="" onclick="expandRow(this)" class="text-center">{{x.number}}</a></td>
-				<td id="document_name" style="width: 75%;">{{x.name}}</td>
-				<td style="width: 10%; vertical-align: middle;" class="text-center">
-					<!-- Add to favorite popover -->
-					<button type="button" class="glyphicon glyphicon-star text-center"
-						title="{{popover.title}}" data-content="{{popover.content}}"
-						data-template-url="/FavoritePopover" data-animation="am-flip-x"
-						data-auto-close="1" bs-popover></button>
-				</td>
-			</tr>
-			<tr style="display:none;">
-				<td colspan=3><span ng-bind-html="x.text"></span></td>
-			</tr>
+		<table class="table table-hover" ng-repeat="x in results">
+			<tbody>
+				<tr id="document" scope="row">
+					<td class="document_number text-center"
+						style="width: 15%; vertical-align: middle;"><a href=""
+						onclick="expandRow(this)" class="text-center">{{x.number}}</a></td>
+					<td id="document_name" style="width: 75%; vertical-align: middle;">{{x.name}}</td>
+					<td style="width: 10%; vertical-align: middle;" class="text-center">
+						<!-- Add to favorite popover -->
+	
+						<div ng-switch on="resultType">
+							<div ng-switch-when="search">
+								<button type="button"
+									class="btn btn-default glyphicon glyphicon-star text-center"
+									title="{{popover.title}}" data-content="{{popover.content}}"
+									data-template-url="/FavoritePopover" data-animation="am-flip-x"
+									data-auto-close="1" data-placement="auto-right" bs-popover></button>
+							</div>
+							<div ng-switch-when="favorite">
+								<button type="button" class="btn btn-default glyphicon glyphicon-remove text-center" ng-click="removeFromFavoriteGroup(currentFav, x.id)"></button>
+							</div>
+							
+						</div>
+					</td>
+				</tr>
+				<tr style="display: none; background: #F0F0F0;">
+					<td colspan=3><span ng-bind-html="x.text"></span></td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 

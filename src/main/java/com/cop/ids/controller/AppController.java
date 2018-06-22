@@ -72,6 +72,8 @@ public class AppController {
     @RequestMapping(value="/addUser", method=RequestMethod.POST) 
     public @ResponseBody void userSubmit(@RequestBody User user) {
     	System.out.println(user.getUsername());
+    	String finalUsername = user.getUsername().toLowerCase();
+    	user.setUsername(finalUsername);
 		userRepository.insert(user);
 	    return;
 	}
