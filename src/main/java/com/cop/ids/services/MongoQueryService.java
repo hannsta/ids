@@ -25,7 +25,12 @@ public class MongoQueryService {
 	}
 	
 	public List<Section> regexQuery(String searchText){
-		Query query = new Query(Criteria.where("name").regex(searchText.toUpperCase()));
+		Query query = new Query();
+		if(isNumeric(searchText.replace("-", ""))) {
+			query = new Query(Criteria.where("number").regex(searchText));
+		} else {
+			query = new Query(Criteria.where("name").regex(searchText.toUpperCase()));
+		}
 		List<Section> sections = mongoOps.find(query, Section.class);
 		return sections;
 	}
@@ -45,5 +50,10 @@ public class MongoQueryService {
 		query.addCriteria(Criteria.where("id").in(ids));
 		List<Section> sections = mongoOps.find(query, Section.class);
 		return sections;
+	}
+	
+	public static boolean isNumeric(String str)
+	{
+	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
 	}
 }

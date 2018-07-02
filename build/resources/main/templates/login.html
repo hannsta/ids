@@ -2,50 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Spring Security Example </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Search Idaho Statutes</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="./css/login.css">
-        <style>
-        	body {
-			  background-color: #eee;
-			  padding-top: 0px !important;
-			}
-			
-			.form-signin {
-			  max-width: 330px;
-			  padding: 15px;
-			  margin: 0 auto;
-			}
-			.form-signin .form-signin-heading,
-			.form-signin .checkbox {
-			  margin-bottom: 10px;
-			}
-			.form-signin .checkbox {
-			  font-weight: normal;
-			}
-			.form-signin .form-control {
-			  position: relative;
-			  height: auto;
-			  -webkit-box-sizing: border-box;
-			     -moz-box-sizing: border-box;
-			          box-sizing: border-box;
-			  padding: 10px;
-			  font-size: 16px;
-			}
-			.form-signin .form-control:focus {
-			  z-index: 2;
-			}
-			.form-signin input[type="email"] {
-			  margin-bottom: -1px;
-			  border-bottom-right-radius: 0;
-			  border-bottom-left-radius: 0;
-			}
-			.form-signin input[type="password"] {
-			  margin-bottom: 10px;
-			  border-top-left-radius: 0;
-			  border-top-right-radius: 0;
-			}
-        </style>
+        <link rel="stylesheet" type="text/css" href="/css/login.css">
     </head>
     <body>
     	<nav class="navbar navbar-expand-lg navbar-inverse">
@@ -59,7 +19,7 @@
 							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#" style="margin-top: -10px"><img
-						src="images/state_seal.svg" alt="Idaho Statutes" height="40px"
+						src="/images/state_seal.svg" alt="Idaho Statutes" height="40px"
 						width="40px"></a>
 				</div>
 				<div class="collapse navbar-collapse"
@@ -80,7 +40,7 @@
 		        </div>
 	        	<h2 class="form-signin-heading">Please sign in</h2>
 	            <label class="sr-only" for="inputUName">Username</label>
-	            <input class="form-control" id="inputUName" placeholder="Username" type="text" required="" name="username"/>
+	            <input class="form-control" id="inputUName" placeholder="Username" type="text" required="" name="username" onkeydown="lowerCaseF(this)"/>
 	            <label for="inputPassword" class="sr-only">Password</label>
 	            <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="password"/>
 	            <button class="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
@@ -88,6 +48,7 @@
 	        </form>
 	     </div>
     </body>
+    <script src="/js/helpers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
